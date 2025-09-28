@@ -28,7 +28,7 @@
   <meta property="og:title" content="Talha Emre Çalargün" />
   <meta property="og:description" content="Kısa kişisel tanıtım ve iletişim bağlantıları." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1NqG_CfkoituZpvOe6tKzTTizf7oqyniM" />
+  <meta property="og:image" content="https://talhacalargun.com/assets/profile.jpg" />
   <meta property="og:url" content="https://talhacalargun.com/" />
   <meta property="og:site_name" content="Talha Emre Çalargün" />
 
@@ -36,14 +36,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Talha Emre Çalargün" />
   <meta name="twitter:description" content="Kısa kişisel tanıtım ve iletişim bağlantıları." />
-  <meta name="twitter:image" content="https://drive.google.com/uc?export=view&id=1NqG_CfkoituZpvOe6tKzTTizf7oqyniM" />
+  <meta name="twitter:image" content="https://talhacalargun.com/assets/profile.jpg" />
 
-  <!-- Icons (isteğe göre /favicon.svg ekleyebilirsin) -->
-<!-- Faviconlar -->
-  <link rel="icon" href="/favicon.ico" sizes="any"><!-- Varsayılan (ICO formatı) -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Modern tarayıcılar için -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- iOS için -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><!-- Eski tarayıcılar için -->
+  <!-- Faviconlar -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,12 +51,12 @@
 
   <style>
     :root{
-      --bg:#0b0b0c;          /* koyu zemin */
-      --card:#111214;        /* kart arka planı */
-      --gold:#d4af37;        /* premium altın */
-      --text:#e7e7ea;        /* ana metin */
-      --muted:#a9a9b3;       /* ikincil metin */
-      --border:#22232a;      /* ince sınırlar */
+      --bg:#0b0b0c;
+      --card:#111214;
+      --gold:#d4af37;
+      --text:#e7e7ea;
+      --muted:#a9a9b3;
+      --border:#22232a;
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.35);
     }
@@ -85,7 +84,14 @@
     .btn.primary{background:linear-gradient(135deg,var(--gold),#f2d766);color:#111;font-weight:700}
 
     .avatar{display:grid;place-items:center}
-    .avatar .photo{width:100%;aspect-ratio:1/1;border-radius:22px;border:1px solid var(--border);background:#0e0f12 url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop') center/cover;box-shadow:var(--shadow)}
+    .avatar .photo{
+      width:100%;
+      aspect-ratio:1/1;
+      border-radius:22px;
+      border:1px solid var(--border);
+      object-fit:cover;
+      box-shadow:var(--shadow);
+    }
 
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
     .grid .card-inner{padding:20px}
@@ -155,7 +161,7 @@
         </div>
       </div></div>
       <div class="avatar">
-        <div class="photo" aria-label="Profil görseli"></div>
+        <img src="assets/profile.jpg" alt="Talha Emre Çalargün" class="photo">
       </div>
     </section>
 
