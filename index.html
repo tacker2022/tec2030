@@ -7,7 +7,7 @@
   <title>Talha Emre Çalargün | Girişimci • Operasyon • Dijital Dönüşüm</title>
   <meta name="description" content="Talha Emre Çalargün - Şehir, teknoloji ve işin kesişiminde; otopark, gayrimenkul ve dijital dönüşüm projeleri. Parkexpert, Goods Real Estate ve Formula Bilişim ile sonuç odaklı işler.">
 
-   <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -19,8 +19,6 @@
   <!-- Canonical & Robots -->
   <link rel="canonical" href="https://talhacalargun.com/" />
   <meta name="robots" content="index, follow" />
-
-  <!-- Primary SEO -->
   <meta name="theme-color" content="#0b0b0c" />
 
   <!-- Open Graph -->
@@ -155,13 +153,13 @@
           <span class="badge">Expert İmar – Planlama</span>
         </div>
         <div class="cta">
-          <a class="btn primary" href="#iletisim">İletişime Geç</a>
-          <a class="btn" href="/cv.pdf" target="_blank" rel="noopener noreferrer">Özgeçmiş (PDF)</a>
-          <a class="btn" href="mailto:talha@expertgrup.istanbul">E-posta</a>
+          <a id="btn-iletisim" class="btn primary" href="#iletisim">İletişime Geç</a>
+          <a id="btn-cv" class="btn" href="/cv.pdf" target="_blank" rel="noopener noreferrer">Özgeçmiş (PDF)</a>
+          <a id="btn-mail" class="btn" href="mailto:talha@expertgrup.istanbul">E-posta</a>
         </div>
       </div></div>
       <div class="avatar">
-        <img src="assets/profile.jpg" alt="Talha Emre Çalargün" class="photo">
+        <img src="assets/profile.jpg" alt="Talha Emre Çalargün" class="photo" width="600" height="600">
       </div>
     </section>
 
@@ -213,9 +211,9 @@
     <section id="iletisim" class="grid" style="margin-top:22px">
       <article class="card"><div class="card-inner">
         <h3>İletişim</h3>
-        <p>E-posta: <a href="mailto:talha@expertgrup.istanbul">talha@expertgrup.istanbul</a></p>
-        <p>Telefon: <a href="https://wa.me/90530XXXXXXX" target="_blank" rel="noopener noreferrer">+90 530 XXX XX XX (WhatsApp)</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/talhaemrecalargun" target="_blank" rel="noopener noreferrer">linkedin.com/in/talhaemrecalargun</a></p>
+        <p>E-posta: <a id="link-mail" href="mailto:talha@expertgrup.istanbul">talha@expertgrup.istanbul</a></p>
+        <p>Telefon: <a id="link-whatsapp" href="https://wa.me/90530XXXXXXX" target="_blank" rel="noopener noreferrer">+90 530 XXX XX XX (WhatsApp)</a></p>
+        <p>LinkedIn: <a id="link-linkedin" href="https://www.linkedin.com/in/talhaemrecalargun" target="_blank" rel="noopener noreferrer">linkedin.com/in/talhaemrecalargun</a></p>
       </div></article>
       
       <article class="card"><div class="card-inner">
@@ -239,7 +237,34 @@
   </div>
 
   <script>
+    // Yıl
     document.getElementById('yil').textContent = new Date().getFullYear();
+
+    // GA4 Event helper
+    function sendEvent(action, label, extra) {
+      if (!window.gtag) return;
+      gtag('event', action, Object.assign({
+        event_category: 'CTA',
+        event_label: label
+      }, extra || {}));
+    }
+
+    // Event bindings
+    window.addEventListener('DOMContentLoaded', function () {
+      var btnIletisim = document.getElementById('btn-iletisim');
+      var btnCv       = document.getElementById('btn-cv');
+      var btnMail     = document.getElementById('btn-mail');
+      var linkMail    = document.getElementById('link-mail');
+      var linkWhats   = document.getElementById('link-whatsapp');
+      var linkLinked  = document.getElementById('link-linkedin');
+
+      if (btnIletisim) btnIletisim.addEventListener('click', function(){ sendEvent('click', 'İletişime Geç'); });
+      if (btnCv)       btnCv.addEventListener('click',       function(){ sendEvent('download_cv', 'CV PDF'); });
+      if (btnMail)     btnMail.addEventListener('click',     function(){ sendEvent('mailto_btn', 'E-posta (üst)'); });
+      if (linkMail)    linkMail.addEventListener('click',    function(){ sendEvent('mailto_link', 'E-posta (alt)'); });
+      if (linkWhats)   linkWhats.addEventListener('click',   function(){ sendEvent('outbound', 'WhatsApp'); });
+      if (linkLinked)  linkLinked.addEventListener('click',  function(){ sendEvent('outbound', 'LinkedIn'); });
+    });
   </script>
 </body>
 </html>
