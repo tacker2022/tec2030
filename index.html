@@ -26,7 +26,10 @@
   <meta property="og:title" content="Talha Emre Çalargün" />
   <meta property="og:description" content="Talha Emre Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://talhacalargun.com/assets/profile.jpg" />
+  <meta property="og:image" content="https://talhacalargun.com/assets/og-cover.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Talha Emre Çalargün — kişisel sayfa kapağı" />
   <meta property="og:url" content="https://talhacalargun.com/" />
   <meta property="og:site_name" content="Talha Emre Çalargün" />
 
@@ -34,7 +37,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Talha Emre Çalargün" />
   <meta name="twitter:description" content="Talha Emre Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları." />
-  <meta name="twitter:image" content="https://talhacalargun.com/assets/profile.jpg" />
+  <meta name="twitter:image" content="https://talhacalargun.com/assets/og-cover.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Talha Emre Çalargün — kişisel sayfa kapağı" />
 
   <!-- 🔥 Favicon ve Uygulama Simgeleri -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -110,6 +114,19 @@
       .links{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
     }
+
+    /* Mobile polish (≤600px) */
+    @media (max-width:600px){
+      .wrap{padding:20px}
+      .card-inner{padding:18px}
+      .title{font-size:clamp(26px,7vw,36px)}
+      .subtitle{font-size:15px}
+      .cta{gap:10px}
+      .btn{width:100%; justify-content:center; padding:12px 14px}
+      .badges{gap:8px}
+      .badge{font-size:12px; padding:7px 10px}
+      .links{grid-template-columns:1fr}
+    }
   </style>
 
   <!-- Structured Data (SEO) -->
@@ -162,7 +179,11 @@
         </div>
       </div></div>
       <div class="avatar">
-        <img src="assets/profile.jpg" alt="Talha Emre Çalargün - Profil Fotoğrafı" class="photo" width="600" height="600">
+        <img src="assets/profile.jpg"
+             alt="Talha Emre Çalargün - Profil Fotoğrafı"
+             class="photo"
+             width="600" height="600"
+             loading="lazy" decoding="async" fetchpriority="low">
       </div>
     </section>
 
