@@ -6,6 +6,7 @@
 
   <title>Talha Emre Çalargün | Girişimci • Operasyon • Dijital Dönüşüm</title>
   <meta name="description" content="Talha Emre Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları.">
+  <meta name="keywords" content="Talha Emre Çalargün, girişimci, otopark, Parkexpert, Goods Real Estate, Formula Bilişim, dijital dönüşüm, operasyon, Expert Grup">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
@@ -62,6 +63,7 @@
       --border:#22232a;
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.35);
+      color-scheme: dark light;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
@@ -70,12 +72,24 @@
     header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
     .brand{display:flex;align-items:center;gap:14px}
     .logo{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f6e27a);display:grid;place-items:center;color:#111;font-weight:800;box-shadow:var(--shadow)}
-    nav a{opacity:.85;padding:10px 14px;border-radius:12px;border:1px solid transparent}
+    nav{display:flex;gap:6px}
+    nav a{opacity:.9;padding:10px 14px;border-radius:12px;border:1px solid transparent;position:relative;overflow:hidden}
     nav a:hover{border-color:var(--border);opacity:1}
+    nav a::after{
+      content:""; position:absolute; left:10%; right:90%; bottom:6px; height:2px;
+      background:linear-gradient(90deg,var(--gold),#f2d766); transition:all .25s ease;
+    }
+    nav a:hover::after{ left:10%; right:10%; }
+
+    #theme-toggle{ padding:10px 12px; font-size:14px; border-radius:12px; border:1px solid var(--border); background:#15161a; }
+    #theme-toggle:hover{ transform:translateY(-1px) }
 
     .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:10px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);opacity:0;transform:translateY(6px);animation:fadeUp .5s ease forwards}
+    .card:nth-child(2){ animation-delay:.06s } .card:nth-child(3){ animation-delay:.12s }
     .card-inner{padding:26px}
+    @keyframes fadeUp{to{opacity:1; transform:none}}
+
     .title{font-size:clamp(28px,3.2vw,44px);line-height:1.1;margin:0 0 8px}
     .subtitle{color:var(--muted);font-size:clamp(14px,1.4vw,16px);margin:0 0 18px}
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
@@ -88,12 +102,8 @@
 
     .avatar{display:grid;place-items:center}
     .avatar .photo{
-      width:100%;
-      aspect-ratio:1/1;
-      border-radius:22px;
-      border:1px solid var(--border);
-      object-fit:cover;
-      box-shadow:var(--shadow);
+      width:100%; aspect-ratio:1/1; border-radius:22px; border:1px solid var(--border);
+      object-fit:cover; box-shadow:var(--shadow);
     }
 
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
@@ -115,6 +125,14 @@
       .grid{grid-template-columns:1fr}
     }
 
+    /* Light tema paleti */
+    [data-theme="light"]{
+      --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
+    }
+
     /* Mobile polish (≤600px) */
     @media (max-width:600px){
       .wrap{padding:20px}
@@ -127,6 +145,9 @@
       .badge{font-size:12px; padding:7px 10px}
       .links{grid-template-columns:1fr}
     }
+
+    /* Smooth scroll */
+    html{ scroll-behavior:smooth; }
   </style>
 
   <!-- Structured Data (SEO) -->
@@ -161,6 +182,7 @@
         <a href="#isler">Markalar</a>
         <a href="#iletisim">İletişim</a>
       </nav>
+      <button id="theme-toggle" class="btn" aria-label="Tema değiştir">☀︎/🌙</button>
     </header>
 
     <section class="hero">
@@ -261,6 +283,28 @@
       © <span id="yil"></span> TEC
     </footer>
   </div>
+
+  <!-- Tema kontrolü (kalıcı) -->
+  <script>
+    (function(){
+      const key='tec_theme';
+      const saved=localStorage.getItem(key);
+      if(saved==='light' || saved==='dark'){
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+      window.addEventListener('DOMContentLoaded', function(){
+        const btn=document.getElementById('theme-toggle');
+        if(!btn) return;
+        btn.addEventListener('click', function(){
+          const curr=document.documentElement.getAttribute('data-theme') || 
+                      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          const next= curr==='light' ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem(key,next);
+        });
+      });
+    })();
+  </script>
 
   <script>
     // Yıl
