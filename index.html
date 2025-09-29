@@ -7,21 +7,12 @@
   <title>Talha Emre Çalargün | Girişimci • Operasyon • Dijital Dönüşüm</title>
   <meta name="description" content="Talha Emre Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları.">
   <meta name="keywords" content="Talha Emre Çalargün, girişimci, otopark, Parkexpert, Goods Real Estate, Formula Bilişim, dijital dönüşüm, operasyon, Expert Grup">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-CVBXW9G069');
-  </script>
-  
-  <!-- Canonical, Robots, Hreflang -->
-  <link rel="canonical" href="https://talhacalargun.com/" />
-  <link rel="alternate" hreflang="tr-TR" href="https://talhacalargun.com/">
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0b0b0c" />
+
+  <!-- Canonical, Hreflang -->
+  <link rel="canonical" href="https://talhacalargun.com/" />
+  <link rel="alternate" hreflang="tr-TR" href="https://talhacalargun.com/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Talha Emre Çalargün" />
@@ -41,12 +32,21 @@
   <meta name="twitter:image" content="https://talhacalargun.com/assets/og-cover.jpg?v=1" />
   <meta name="twitter:image:alt" content="Talha Emre Çalargün — kişisel sayfa kapağı" />
 
-  <!-- 🔥 Favicon ve Uygulama Simgeleri -->
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CVBXW9G069');
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,6 +64,7 @@
       --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.35);
       color-scheme: dark light;
+      scroll-behavior:smooth;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
@@ -78,14 +79,12 @@
       border-bottom: 1px solid var(--border);
       transition: box-shadow .25s ease, background .25s ease, border-color .25s ease;
       display:flex; align-items:center; justify-content:space-between; gap:16px;
-      margin-bottom:28px; /* önceki header margin'i burada koruduk */
+      margin-bottom:28px;
+      padding: 10px 0;
     }
     #site-header.scrolled{
       box-shadow: 0 6px 20px rgba(0,0,0,.18);
       border-color: color-mix(in oklab, var(--border) 70%, var(--text) 30%);
-    }
-    [data-theme="light"] #site-header{
-      background: color-mix(in oklab, var(--bg) 80%, transparent);
     }
 
     .brand{display:flex;align-items:center;gap:14px}
@@ -110,8 +109,17 @@
 
     .title{font-size:clamp(28px,3.2vw,44px);line-height:1.1;margin:0 0 8px}
     .subtitle{color:var(--muted);font-size:clamp(14px,1.4vw,16px);margin:0 0 18px}
+
+    /* Badges — daha belirgin */
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
-    .badge{border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:#cfcfd9;font-size:13px}
+    .badge{
+      padding:8px 12px;border-radius:999px;font-size:13px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+      color:var(--text);
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .badge:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.28); }
+    .badge--gold{ background:linear-gradient(135deg,#d4af37,#f2d766); color:#111; border-color:transparent; }
 
     .cta{display:flex;flex-wrap:wrap;gap:12px}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid var(--border);background:#15161a;transition:.2s}
@@ -143,10 +151,7 @@
       .grid{grid-template-columns:1fr}
     }
 
-    /* Light tema paleti */
-    [data-theme="light"]{
-      --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec;
-    }
+    /* Kullanıcının sistem ayarı: light olduğunda başlangıç paleti */
     @media (prefers-color-scheme: light){
       :root{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
     }
@@ -164,11 +169,18 @@
       .links{grid-template-columns:1fr}
     }
 
-    /* Smooth scroll */
-    html{ scroll-behavior:smooth; }
+    /* ✅ Attribute teması (EN SONDA) – butonla değiştiğinde her şeyi override eder */
+    :root[data-theme="dark"]{
+      --bg:#0b0b0c; --card:#111214; --text:#e7e7ea; --muted:#a9a9b3; --border:#22232a;
+    }
+    :root[data-theme="light"]{
+      --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec;
+    }
+    :root[data-theme="light"] .badge{ background:#f1f2f4; border-color:#d9dbe1; color:#1b1c1f; }
+    :root[data-theme="light"] .badge:hover{ background:#e7e9ee; border-color:#cdd0d8; }
   </style>
 
-  <!-- Structured Data (SEO) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -208,7 +220,7 @@
         <h1 class="title">Şehir, teknoloji ve işin kesişiminde; <span style="color:var(--gold)">sonuç odaklı</span> işler kuruyorum.</h1>
         <p class="subtitle">Expert Grup çatısı altında; otopark işletmeciliği, gayrimenkul ve yazılım projelerini ölçeklendiren ekiplerin yanındayım. Parkexpert, Goods Real Estate, Formula Bilişim gibi markaların operasyon ve büyüme süreçlerini yönetiyorum.</p>
         <div class="badges">
-          <span class="badge">Parkexpert – Otopark Operasyonları</span>
+          <span class="badge badge--gold">Parkexpert – Otopark Operasyonları</span>
           <span class="badge">Goods Real Estate – Gayrimenkul</span>
           <span class="badge">Formula Bilişim – Yazılım</span>
           <span class="badge">Expert İmar – Planlama</span>
@@ -302,26 +314,32 @@
     </footer>
   </div>
 
-  <!-- Tema kontrolü (kalıcı) -->
+  <!-- Tema kontrolü (kalıcı + meta theme-color güncelleme) -->
   <script>
-    (function(){
-      const key='tec_theme';
-      const saved=localStorage.getItem(key);
-      if(saved==='light' || saved==='dark'){
-        document.documentElement.setAttribute('data-theme', saved);
-      }
-      window.addEventListener('DOMContentLoaded', function(){
-        const btn=document.getElementById('theme-toggle');
-        if(!btn) return;
-        btn.addEventListener('click', function(){
-          const curr=document.documentElement.getAttribute('data-theme') || 
-                      (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-          const next= curr==='light' ? 'dark' : 'light';
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem(key,next);
-        });
+  (function(){
+    const KEY='tec_theme';
+    const metaTheme=document.querySelector('meta[name="theme-color"]');
+
+    function applyTheme(t){
+      document.documentElement.setAttribute('data-theme', t);
+      if(metaTheme){ metaTheme.setAttribute('content', t==='light' ? '#f7f7f8' : '#0b0b0c'); }
+      localStorage.setItem(KEY, t);
+    }
+
+    // İlk atama
+    const saved=localStorage.getItem(KEY);
+    applyTheme(saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'));
+
+    // Buton
+    addEventListener('DOMContentLoaded', ()=>{
+      const btn=document.getElementById('theme-toggle');
+      if(!btn) return;
+      btn.addEventListener('click', ()=>{
+        const curr=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';
+        applyTheme(curr==='light'?'dark':'light');
       });
-    })();
+    });
+  })();
   </script>
 
   <!-- Header scroll gölgesi -->
@@ -338,11 +356,10 @@
     })();
   </script>
 
+  <!-- CTA eventleri -->
   <script>
-    // Yıl
     document.getElementById('yil').textContent = new Date().getFullYear();
 
-    // GA4 Event helper
     function sendEvent(action, label, extra) {
       if (!window.gtag) return;
       gtag('event', action, Object.assign({
@@ -351,7 +368,6 @@
       }, extra || {}));
     }
 
-    // Event bindings
     window.addEventListener('DOMContentLoaded', function () {
       var btnIletisim = document.getElementById('btn-iletisim');
       var btnCv       = document.getElementById('btn-cv');
