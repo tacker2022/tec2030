@@ -69,7 +69,25 @@
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1050px;margin:0 auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
+
+    /* Sticky + blur header */
+    #site-header{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .25s ease, background .25s ease, border-color .25s ease;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      margin-bottom:28px; /* önceki header margin'i burada koruduk */
+    }
+    #site-header.scrolled{
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+      border-color: color-mix(in oklab, var(--border) 70%, var(--text) 30%);
+    }
+    [data-theme="light"] #site-header{
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+    }
+
     .brand{display:flex;align-items:center;gap:14px}
     .logo{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f6e27a);display:grid;place-items:center;color:#111;font-weight:800;box-shadow:var(--shadow)}
     nav{display:flex;gap:6px}
@@ -169,7 +187,7 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <header id="site-header">
       <div class="brand">
         <div class="logo" aria-label="TEC">TEC</div>
         <div>
@@ -303,6 +321,20 @@
           localStorage.setItem(key,next);
         });
       });
+    })();
+  </script>
+
+  <!-- Header scroll gölgesi -->
+  <script>
+    (function(){
+      const header = document.getElementById('site-header');
+      if(!header) return;
+      const onScroll = () => {
+        if (window.scrollY > 8) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
     })();
   </script>
 
