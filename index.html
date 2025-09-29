@@ -139,9 +139,26 @@
     .list{margin:10px 0 0;padding:0 0 0 16px;color:#cfd0d6}
 
     .links{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
-    .link{display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:14px;border:1px solid var(--border);background:#0f1014}
+    .link{display:flex;align-items:center;justify-content:space-between;padding:16px;border-radius:14px;border:1px solid var(--border);background:#0f1014;transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease}
     .link span{color:#dcdce3}
     .link small{color:#a9a9b3}
+
+    /* --- AÇIK TEMA güçlendirmeleri (rozet + link kartları) --- */
+    :root[data-theme="light"] .badge{ background:#f1f2f4; border-color:#d9dbe1; color:#1b1c1f; }
+    :root[data-theme="light"] .badge:hover{ background:#e7e9ee; border-color:#cdd0d8; }
+
+    :root[data-theme="light"] .link{
+      background:#ffffff;
+      border-color:#d9dbe1;
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
+    }
+    :root[data-theme="light"] .link:hover{
+      transform:translateY(-1px);
+      border-color:#c6c8d0;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+    :root[data-theme="light"] .link span{ color:#1b1c1f; }
+    :root[data-theme="light"] .link small{ color:#5d5f68; }
 
     footer{margin:34px 0 10px;color:#8e8f98;text-align:center;font-size:13px}
 
@@ -151,7 +168,7 @@
       .grid{grid-template-columns:1fr}
     }
 
-    /* Kullanıcının sistem ayarı: light olduğunda başlangıç paleti */
+    /* Sistem ayarı light olanlar için başlangıç paleti */
     @media (prefers-color-scheme: light){
       :root{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
     }
@@ -169,15 +186,13 @@
       .links{grid-template-columns:1fr}
     }
 
-    /* ✅ Attribute teması (EN SONDA) – butonla değiştiğinde her şeyi override eder */
+    /* ✅ Attribute teması – butonla değiştiğinde kesin override */
     :root[data-theme="dark"]{
       --bg:#0b0b0c; --card:#111214; --text:#e7e7ea; --muted:#a9a9b3; --border:#22232a;
     }
     :root[data-theme="light"]{
       --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec;
     }
-    :root[data-theme="light"] .badge{ background:#f1f2f4; border-color:#d9dbe1; color:#1b1c1f; }
-    :root[data-theme="light"] .badge:hover{ background:#e7e9ee; border-color:#cdd0d8; }
   </style>
 
   <!-- Structured Data -->
