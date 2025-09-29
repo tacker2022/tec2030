@@ -140,7 +140,8 @@
     "image": "https://talhacalargun.com/assets/profile.jpg",
     "sameAs": [
       "https://www.linkedin.com/in/talhaemrecalargun",
-      "https://talhacalargun.com/"
+      "https://talhacalargun.com/",
+      "https://wa.me/905372939874"
     ]
   }
   </script>
@@ -176,6 +177,7 @@
           <a id="btn-iletisim" class="btn primary" href="#iletisim">İletişime Geç</a>
           <a id="btn-cv" class="btn" href="/cv.pdf" target="_blank" rel="noopener noreferrer">Özgeçmiş (PDF)</a>
           <a id="btn-mail" class="btn" href="mailto:talha@expertgrup.istanbul">E-posta</a>
+          <a id="btn-whatsapp" class="btn" href="https://wa.me/905372939874" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
       </div></div>
       <div class="avatar">
@@ -236,7 +238,7 @@
       <article class="card"><div class="card-inner">
         <h2>İletişim</h2>
         <p>E-posta: <a id="link-mail" href="mailto:talha@expertgrup.istanbul">talha@expertgrup.istanbul</a></p>
-        <p>Telefon: <a id="link-whatsapp" href="https://wa.me/90530XXXXXXX" target="_blank" rel="noopener noreferrer">+90 530 XXX XX XX (WhatsApp)</a></p>
+        <p>Telefon: <a id="link-whatsapp" href="https://wa.me/905372939874" target="_blank" rel="noopener noreferrer">+90 537 293 98 74 (WhatsApp)</a></p>
         <p>LinkedIn: <a id="link-linkedin" href="https://www.linkedin.com/in/talhaemrecalargun" target="_blank" rel="noopener noreferrer">linkedin.com/in/talhaemrecalargun</a></p>
       </div></article>
       
@@ -278,6 +280,7 @@
       var btnIletisim = document.getElementById('btn-iletisim');
       var btnCv       = document.getElementById('btn-cv');
       var btnMail     = document.getElementById('btn-mail');
+      var btnWhats    = document.getElementById('btn-whatsapp');
       var linkMail    = document.getElementById('link-mail');
       var linkWhats   = document.getElementById('link-whatsapp');
       var linkLinked  = document.getElementById('link-linkedin');
@@ -285,8 +288,9 @@
       if (btnIletisim) btnIletisim.addEventListener('click', function(){ sendEvent('click', 'İletişime Geç'); });
       if (btnCv)       btnCv.addEventListener('click',       function(){ sendEvent('download_cv', 'CV PDF'); });
       if (btnMail)     btnMail.addEventListener('click',     function(){ sendEvent('mailto_btn', 'E-posta (üst)'); });
+      if (btnWhats)    btnWhats.addEventListener('click',    function(){ sendEvent('outbound', 'WhatsApp (üst)'); });
       if (linkMail)    linkMail.addEventListener('click',    function(){ sendEvent('mailto_link', 'E-posta (alt)'); });
-      if (linkWhats)   linkWhats.addEventListener('click',   function(){ sendEvent('outbound', 'WhatsApp'); });
+      if (linkWhats)   linkWhats.addEventListener('click',   function(){ sendEvent('outbound', 'WhatsApp (alt)'); });
       if (linkLinked)  linkLinked.addEventListener('click',  function(){ sendEvent('outbound', 'LinkedIn'); });
     });
   </script>
