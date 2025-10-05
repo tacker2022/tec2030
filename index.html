@@ -27,10 +27,10 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Talha Emre Çalargün" />
-  <meta name="twitter:description" content="Talha Emre Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları." />
+  <meta name="twitter:title" content="Talha Çalargün" />
+  <meta name="twitter:description" content="Talha Çalargün: Otopark işletmeciliği, gayrimenkul ve dijital dönüşümde uzman girişimci. Parkexpert, Goods Real Estate ve Formula Bilişim markaları." />
   <meta name="twitter:image" content="https://talhacalargun.com/assets/og-cover.jpg?v=1" />
-  <meta name="twitter:image:alt" content="Talha Emre Çalargün — kişisel sayfa kapağı" />
+  <meta name="twitter:image:alt" content="Talha Çalargün — kişisel sayfa kapağı" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -75,16 +75,15 @@
     #site-header{
       position: sticky; top: 0; z-index: 50;
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      background: rgba(11,11,12,.82);
       border-bottom: 1px solid var(--border);
       transition: box-shadow .25s ease, background .25s ease, border-color .25s ease;
       display:flex; align-items:center; justify-content:space-between; gap:16px;
-      margin-bottom:28px;
-      padding: 10px 0;
+      margin-bottom:28px; padding:10px 0;
     }
     #site-header.scrolled{
       box-shadow: 0 6px 20px rgba(0,0,0,.18);
-      border-color: color-mix(in oklab, var(--border) 70%, var(--text) 30%);
+      border-color: #2a2c32;
     }
 
     .brand{display:flex;align-items:center;gap:14px}
@@ -110,13 +109,11 @@
     .title{font-size:clamp(28px,3.2vw,44px);line-height:1.1;margin:0 0 8px}
     .subtitle{color:var(--muted);font-size:clamp(14px,1.4vw,16px);margin:0 0 18px}
 
-    /* Badges — daha belirgin */
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 22px}
     .badge{
       padding:8px 12px;border-radius:999px;font-size:13px;
       background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
-      color:var(--text);
-      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      color:var(--text); transition:transform .15s ease, background .15s ease, border-color .15s ease;
     }
     .badge:hover{ transform:translateY(-1px); background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.28); }
     .badge--gold{ background:linear-gradient(135deg,#d4af37,#f2d766); color:#111; border-color:transparent; }
@@ -143,20 +140,11 @@
     .link span{color:#dcdce3}
     .link small{color:#a9a9b3}
 
-    /* --- AÇIK TEMA güçlendirmeleri (rozet + link kartları) --- */
+    /* Light güçlendirme (rozet + link kartları) */
     :root[data-theme="light"] .badge{ background:#f1f2f4; border-color:#d9dbe1; color:#1b1c1f; }
     :root[data-theme="light"] .badge:hover{ background:#e7e9ee; border-color:#cdd0d8; }
-
-    :root[data-theme="light"] .link{
-      background:#ffffff;
-      border-color:#d9dbe1;
-      box-shadow:0 2px 8px rgba(0,0,0,.05);
-    }
-    :root[data-theme="light"] .link:hover{
-      transform:translateY(-1px);
-      border-color:#c6c8d0;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-    }
+    :root[data-theme="light"] .link{ background:#ffffff; border-color:#d9dbe1; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+    :root[data-theme="light"] .link:hover{ transform:translateY(-1px); border-color:#c6c8d0; box-shadow:0 6px 18px rgba(0,0,0,.08); }
     :root[data-theme="light"] .link span{ color:#1b1c1f; }
     :root[data-theme="light"] .link small{ color:#5d5f68; }
 
@@ -173,7 +161,7 @@
       :root{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
     }
 
-    /* Mobile polish (≤600px) */
+    /* Mobile */
     @media (max-width:600px){
       .wrap{padding:20px}
       .card-inner{padding:18px}
@@ -186,16 +174,12 @@
       .links{grid-template-columns:1fr}
     }
 
-    /* ✅ Attribute teması – butonla değiştiğinde kesin override */
-    :root[data-theme="dark"]{
-      --bg:#0b0b0c; --card:#111214; --text:#e7e7ea; --muted:#a9a9b3; --border:#22232a;
-    }
-    :root[data-theme="light"]{
-      --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec;
-    }
+    /* Attribute teması – butonla kesin override */
+    :root[data-theme="dark"]{ --bg:#0b0b0c; --card:#111214; --text:#e7e7ea; --muted:#a9a9b3; --border:#22232a; }
+    :root[data-theme="light"]{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
   </style>
 
-  <!-- Structured Data -->
+  <!-- Structured Data (Gizli tam isim) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -218,7 +202,7 @@
       <div class="brand">
         <div class="logo" aria-label="TEC">TEC</div>
         <div>
-          <strong>Talha Emre Çalargün</strong><br>
+          <strong>Talha Çalargün</strong><br>
           <small style="color:var(--muted)">Girişimci • Operasyon • Dijital Dönüşüm</small>
         </div>
       </div>
@@ -249,16 +233,16 @@
       </div></div>
       <div class="avatar">
         <img src="assets/profile.jpg"
-             alt="Talha Emre Çalargün - Profil Fotoğrafı"
+             alt="Talha Çalargün - Profil Fotoğrafı"
              class="photo"
              width="600" height="600"
              loading="lazy" decoding="async" fetchpriority="low">
       </div>
     </section>
 
-    <section id="hakkimda" class="grid">
+    <section id="hakkimda" class="grid" aria-labelledby="hakkimda-baslik">
       <article class="card"><div class="card-inner">
-        <h2>Hakkımda</h2>
+        <h2 id="hakkimda-baslik">Hakkımda</h2>
         <p>28 yaşında; saha operasyonu, raporlama sistemleri ve marka oluşturma konularında aktif çalışıyorum. Kısa vadede süreçleri <em>ölçülebilir</em> ve <em>otomasyon</em> odaklı kurgulamak, uzun vadede ise ölçeklenebilir iş modelleri oluşturmak ana odağım.</p>
       </div></article>
 
@@ -280,7 +264,8 @@
       </div></article>
     </section>
 
-    <section id="isler" style="margin-top:22px">
+    <section id="isler" style="margin-top:22px" aria-labelledby="markalar-baslik">
+      <h2 id="markalar-baslik" class="visually-hidden" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Markalar</h2>
       <div class="links">
         <a class="link" href="https://www.parkexpert.net" target="_blank" rel="noopener noreferrer">
           <span>Parkexpert</span>
@@ -301,9 +286,9 @@
       </div>
     </section>
 
-    <section id="iletisim" class="grid" style="margin-top:22px">
+    <section id="iletisim" class="grid" style="margin-top:22px" aria-labelledby="iletisim-baslik">
       <article class="card"><div class="card-inner">
-        <h2>İletişim</h2>
+        <h2 id="iletisim-baslik">İletişim</h2>
         <p>E-posta: <a id="link-mail" href="mailto:talha@expertgrup.istanbul">talha@expertgrup.istanbul</a></p>
         <p>Telefon: <a id="link-whatsapp" href="https://wa.me/905372939874" target="_blank" rel="noopener noreferrer">+90 537 293 98 74 (WhatsApp)</a></p>
         <p>LinkedIn: <a id="link-linkedin" href="https://www.linkedin.com/in/talhaemrecalargun" target="_blank" rel="noopener noreferrer">linkedin.com/in/talhaemrecalargun</a></p>
@@ -334,18 +319,13 @@
   (function(){
     const KEY='tec_theme';
     const metaTheme=document.querySelector('meta[name="theme-color"]');
-
     function applyTheme(t){
       document.documentElement.setAttribute('data-theme', t);
       if(metaTheme){ metaTheme.setAttribute('content', t==='light' ? '#f7f7f8' : '#0b0b0c'); }
       localStorage.setItem(KEY, t);
     }
-
-    // İlk atama
     const saved=localStorage.getItem(KEY);
     applyTheme(saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light':'dark'));
-
-    // Buton
     addEventListener('DOMContentLoaded', ()=>{
       const btn=document.getElementById('theme-toggle');
       if(!btn) return;
@@ -374,15 +354,10 @@
   <!-- CTA eventleri -->
   <script>
     document.getElementById('yil').textContent = new Date().getFullYear();
-
     function sendEvent(action, label, extra) {
       if (!window.gtag) return;
-      gtag('event', action, Object.assign({
-        event_category: 'CTA',
-        event_label: label
-      }, extra || {}));
+      gtag('event', action, Object.assign({ event_category: 'CTA', event_label: label }, extra || {}));
     }
-
     window.addEventListener('DOMContentLoaded', function () {
       var btnIletisim = document.getElementById('btn-iletisim');
       var btnCv       = document.getElementById('btn-cv');
