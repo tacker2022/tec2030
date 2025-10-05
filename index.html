@@ -45,6 +45,12 @@
         href="assets/profile.avif?v=2"
         imagesrcset="assets/profile.avif?v=2 1x, assets/profile.avif?v=2 2x"
         imagesizes="(max-width: 900px) 100vw, 600px">
+  <!-- WebP için ek preload (orijinali koruyarak) -->
+  <link rel="preload"
+        as="image"
+        href="assets/profile.webp?v=2"
+        imagesrcset="assets/profile.webp?v=2 1x, assets/profile.webp?v=2 2x"
+        imagesizes="(max-width: 900px) 100vw, 600px">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
@@ -233,18 +239,32 @@
           <source type="image/webp"
                   srcset="assets/profile.webp?v=2 1x, assets/profile.webp?v=2 2x"
                   sizes="(max-width: 900px) 100vw, 600px">
-            <picture>
-  <source srcset="assets/profile.webp" type="image/webp">
-  <img
-    src="assets/profile.jpg"
-    alt="Talha Çalargün - Profil Fotoğrafı"
-    class="photo"
-    width="600" height="600"
-    loading="eager"
-    decoding="async"
-    fetchpriority="high"
-  >
-</picture>
+          <img
+            src="assets/profile.jpg"
+            alt="Talha Çalargün - Profil Fotoğrafı"
+            class="photo"
+            width="600" height="600"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
+
+        <!-- Orijinalden gelen ikinci <picture> bloğu HİÇ SİLMEDEN, valid olması için yorumda bıraktım -->
+        <!--
+        <picture>
+          <source srcset="assets/profile.webp" type="image/webp">
+          <img
+            src="assets/profile.jpg"
+            alt="Talha Çalargün - Profil Fotoğrafı"
+            class="photo"
+            width="600" height="600"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          >
+        </picture>
+        -->
       </div>
     </section>
 
