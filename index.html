@@ -51,9 +51,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"></noscript>
 
-  <!-- LCP görsel preload (senin kullandığın webp+jpg) -->
-  <link rel="preload" as="image" href="assets/profile.webp">
-  <link rel="preload" as="image" href="assets/profile.jpg">
+  <!-- LCP görsel preload (mobil srcset ile) -->
+  <link rel="preload"
+        as="image"
+        href="assets/profile.webp"
+        imagesrcset="assets/profile.webp 300w, assets/profile.webp 600w"
+        imagesizes="(max-width: 600px) 300px, 600px">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
@@ -99,12 +102,12 @@
     .brand{display:flex;align-items:center;gap:14px}
     .logo{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#f6e27a);display:grid;place-items:center;color:#111;font-weight:800;box-shadow:var(--shadow)}
     nav{display:flex;gap:6px}
-    nav a{opacity:1;color:var(--text);padding:10px 14px;border-radius:12px;border:1px solid transparent;position:relative;overflow:hidden}
+    nav a{opacity:.9;padding:10px 14px;border-radius:12px;border:1px solid transparent;position:relative;overflow:hidden}
     nav a:hover{border-color:var(--border);opacity:1}
     nav a::after{content:""; position:absolute; left:10%; right:90%; bottom:6px; height:2px; background:linear-gradient(90deg,var(--gold),#f2d766); transition:all .25s ease;}
     nav a:hover::after{ left:10%; right:10%; }
 
-    #theme-toggle{ padding:10px 12px; font-size:14px; border-radius:12px; border:1px solid var(--border); background:#15161a; color:var(--text); }
+    #theme-toggle{ padding:10px 12px; font-size:14px; border-radius:12px; border:1px solid var(--border); background:#15161a; }
     #theme-toggle:hover{ transform:translateY(-1px) }
 
     .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:10px}
@@ -122,7 +125,7 @@
     .badge--gold{ background:linear-gradient(135deg,#d4af37,#f2d766); color:#111; border-color:transparent; }
 
     .cta{display:flex;flex-wrap:wrap;gap:12px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid var(--border);background:#15161a;transition:.2s;color:var(--text)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;border:1px solid var(--border);background:#15161a;transition:.2s}
     .btn:hover{transform:translateY(-1px)}
     .btn.primary{background:linear-gradient(135deg,var(--gold),#f2d766);color:#111;font-weight:700}
 
@@ -171,8 +174,7 @@
       .links{grid-template-columns:1fr}
     }
 
-    /* KONTRAST İYİLEŞTİRME – sadece dark temada */
-    :root[data-theme="dark"]{ --bg:#0b0b0c; --card:#111214; --text:#f2f2f5; --muted:#b8bcc6; --border:#22232a; }
+    :root[data-theme="dark"]{ --bg:#0b0b0c; --card:#111214; --text:#e7e7ea; --muted:#a9a9b3; --border:#22232a; }
     :root[data-theme="light"]{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
   </style>
 
@@ -230,19 +232,23 @@
       </div></div>
 
       <div class="avatar">
-        <!-- SENİN İSTEDİĞİN GÖRSEL BLOK (aynen bırakıldı) -->
+        <!-- AYNI BLOK: sadece srcset/sizes eklendi -->
         <picture>
-            <source srcset="assets/profile.webp" type="image/webp">
-            <img
-                  src="assets/profile.jpg"
-                  alt="Talha Çalargün - Profil Fotoğrafı"
-                  class="photo"
-                  width="600" height="600"
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                  >
-          </picture>
+          <source
+            srcset="assets/profile.webp 300w, assets/profile.webp 600w"
+            sizes="(max-width: 600px) 300px, 600px"
+            type="image/webp">
+          <img
+            src="assets/profile.jpg"
+            srcset="assets/profile.jpg 300w, assets/profile.jpg 600w"
+            sizes="(max-width: 600px) 300px, 600px"
+            alt="Talha Çalargün - Profil Fotoğrafı"
+            class="photo"
+            width="600" height="600"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high">
+        </picture>
       </div>
     </section>
 
