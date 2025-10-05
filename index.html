@@ -39,18 +39,21 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Hero görselini önceden getir (AVIF) -->
-  <link rel="preload"
-        as="image"
-        href="assets/profile.avif?v=2"
-        imagesrcset="assets/profile.avif?v=2 1x, assets/profile.avif?v=2 2x"
-        imagesizes="(max-width: 900px) 100vw, 600px">
-  <!-- WebP için ek preload (orijinali koruyarak) -->
-  <link rel="preload"
-        as="image"
-        href="assets/profile.webp?v=2"
-        imagesrcset="assets/profile.webp?v=2 1x, assets/profile.webp?v=2 2x"
-        imagesizes="(max-width: 900px) 100vw, 600px">
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- Fonts: render-blocking azaltma -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"></noscript>
+
+  <!-- LCP görsel preload (senin kullandığın webp+jpg) -->
+  <link rel="preload" as="image" href="assets/profile.webp">
+  <link rel="preload" as="image" href="assets/profile.jpg">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CVBXW9G069"></script>
@@ -60,11 +63,6 @@
     gtag('js', new Date());
     gtag('config', 'G-CVBXW9G069');
   </script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -177,7 +175,7 @@
     :root[data-theme="light"]{ --bg:#f7f7f8; --card:#ffffff; --text:#1b1c1f; --muted:#5d5f68; --border:#e7e7ec; }
   </style>
 
-  <!-- Structured Data (Gizli tam isim) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -231,15 +229,8 @@
       </div></div>
 
       <div class="avatar">
-        <!-- LCP görseli: AVIF > WebP > JPG fallback -->
+        <!-- SENİN İSTEDİĞİN GÖRSEL BLOK (aynen bırakıldı) -->
         <picture>
-          <source type="image/avif"
-                  srcset="assets/profile.avif?v=2 1x, assets/profile.avif?v=2 2x"
-                  sizes="(max-width: 900px) 100vw, 600px">
-          <source type="image/webp"
-                  srcset="assets/profile.webp?v=2 1x, assets/profile.webp?v=2 2x"
-                  sizes="(max-width: 900px) 100vw, 600px">
-          <picture>
             <source srcset="assets/profile.webp" type="image/webp">
             <img
                   src="assets/profile.jpg"
@@ -326,7 +317,7 @@
     <footer>© <span id="yil"></span> TEC</footer>
   </div>
 
-  <!-- Tema kontrolü (kalıcı + meta theme-color güncelleme) -->
+  <!-- Tema kontrolü -->
   <script>
   (function(){
     const KEY='tec_theme';
