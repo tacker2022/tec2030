@@ -848,7 +848,16 @@
       </div>
 
       <div class="avatar">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop" alt="Talha Çalargün" class="photo">
+        <!-- GitHub'dan direkt WebP + JPG fallback -->
+        <picture>
+          <source 
+            srcset="https://raw.githubusercontent.com/tacker2022/tec2030/main/assets/profile.webp" 
+            type="image/webp">
+          <img 
+            src="https://raw.githubusercontent.com/tacker2022/tec2030/main/assets/profile.jpg" 
+            alt="Talha Çalargün - Profil Fotoğrafı" 
+            class="photo">
+        </picture>
       </div>
     </section>
 
