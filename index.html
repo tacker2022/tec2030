@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="tr">
 <head>
@@ -152,28 +153,6 @@
       50% { box-shadow: 0 0 25px rgba(212, 175, 55, 1), 0 0 50px rgba(212, 175, 55, 0.5); }
     }
 
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
-      animation: float linear infinite, pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(var(--drift)) scale(0.5); opacity: 0; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.6); }
-      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 1), 0 0 50px rgba(212, 175, 55, 0.5); }
-    }
-
     /* 🎆 GRID OVERLAY */
     body::after {
       content: '';
@@ -195,7 +174,7 @@
       50% { opacity: 0.6; }
     }
 
-    /* 💫 MORPHING SHAPES */
+    /* 🌟 MORPHING SHAPES */
     .morphing-shapes {
       position: fixed;
       top: 0;
@@ -205,7 +184,6 @@
       z-index: 1;
       pointer-events: none;
       opacity: 0.15;
-      display: none; /* Kapalı - performans için */
     }
 
     .morphing-shape {
@@ -916,7 +894,7 @@
     }
 
     footer {
-      margin: 100px 0 0;
+      margin: 100px 0 50px;
       text-align: center;
       color: var(--muted);
       font-size: 15px;
@@ -924,8 +902,7 @@
       position: relative;
       z-index: 10;
       background: var(--bg);
-      padding: 40px 20px;
-      border-top: 1px solid var(--border);
+      padding: 20px;
     }
 
     /* 🌈 RAINBOW SCROLL PROGRESS */
@@ -1580,6 +1557,12 @@
   <!-- Particles -->
   <div class="particles"></div>
 
+  <!-- Morphing Shapes -->
+  <div class="morphing-shapes"></div>
+
+  <!-- Matrix Rain Canvas -->
+  <canvas class="matrix-rain"></canvas>
+
   <!-- Easter Egg -->
   <div class="easter-egg">
     <h1>🎉 KONAMI CODE! 🎉</h1>
@@ -2005,8 +1988,176 @@
       }
     }
 
+    // 🌟 MORPHING SHAPES - Sadece desktop
+    if (!isMobile && !isReducedMotion) {
+      const morphingContainer = document.querySelector('.morphing-shapes');
+      const shapes = [
+        { color: 'rgba(212, 175, 55, 0.15)', size: '400px', top: '10%', left: '10%', duration: '25s' },
+        { color: 'rgba(168, 85, 247, 0.12)', size: '350px', top: '60%', left: '70%', duration: '20s' },
+        { color: 'rgba(59, 130, 246, 0.12)', size: '450px', top: '40%', left: '50%', duration: '30s' }
+      ];
+
+      shapes.forEach(shape => {
+        const div = document.createElement('div');
+        div.className = 'morphing-shape';
+        div.style.width = shape.size;
+        div.style.height = shape.size;
+        div.style.background = shape.color;
+        div.style.top = shape.top;
+        div.style.left = shape.left;
+        div.style.animationDuration = shape.duration;
+        morphingContainer.appendChild(div);
+      });
+    }
+
+    // 🎬 MATRIX RAIN EFFECT - Sadece desktop
+    if (!isMobile && !isReducedMotion) {
+      const canvas = document.querySelector('.matrix-rain');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const matrix = "01";
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = matrix[Math.floor(Math.random() * matrix.length)];
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      const matrixInterval = setInterval(drawMatrix, 50);
+
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    }
+
     // ⚡ TEXT REVEAL ON SCROLL
     const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.tagName === 'H2') {
+            entry.target.classList.add('revealed');
+            const list = entry.target.parentElement.querySelector('.list');
+            if (list) {
+              list.querySelectorAll('li').forEach(li => {
+                li.classList.add('revealed');
+              });
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('h2').forEach(h2 => observer.observe(h2));
+
+    // 🎵 KONAMI CODE EASTER EGG
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          document.querySelector('.easter-egg').classList.add('active');
+          konamiIndex = 0;
+          
+          // Confetti effect - Mobilde daha az
+          const confettiCount = isMobile ? 50 : 100;
+          for (let i = 0; i < confettiCount; i++) {
+            setTimeout(() => {
+              const confetti = document.createElement('div');
+              confetti.style.position = 'fixed';
+              confetti.style.top = Math.random() * 100 + '%';
+              confetti.style.left = Math.random() * 100 + '%';
+              confetti.style.width = '10px';
+              confetti.style.height = '10px';
+              confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+              confetti.style.borderRadius = '50%';
+              confetti.style.zIndex = '10001';
+              confetti.style.animation = 'float 3s ease-out forwards';
+              document.body.appendChild(confetti);
+              setTimeout(() => confetti.remove(), 3000);
+            }, i * 30);
+          }
+        }
+      } else {
+        konamiIndex = 0;
+      }
+    });
+
+    // 🎯 MAGNETIC BUTTONS - Sadece desktop
+    if (!isMobile) {
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+        });
+      });
+    }
+
+    // 📱 SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || !href) return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        
+        if (target) {
+          const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 120;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 🔋 PERFORMANCE - Cleanup on page hide
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Sayfa gizlendiğinde animasyonları durdur
+        document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'paused');
+      } else {
+        document.querySelectorAll('.particle').forEach(p => p.style.animationPlayState = 'running');
+      }
+    });
+
+    // 📊 PERFORMANCE MONITOR
+    console.log('🔥 Site yüklendi!');
+    console.log('📱 Mobil:', isMobile);
+    console.log('⚡ Reduced Motion:', isReducedMotion);
+    console.log('💫 Parçacık sayısı:', particleCount);
+
+    // 🎨 PORTFOLIO FILTER
     const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
